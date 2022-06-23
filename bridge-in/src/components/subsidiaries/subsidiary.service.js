@@ -9,8 +9,13 @@ import {
   where,
 } from "firebase/firestore";
 
+<<<<<<< HEAD
 import { db } from "../firebase/firebase";
 import { Subsidiary } from "./Subsidiary";
+=======
+import { db } from "../firebase/Firebase";
+import { Subsidiary } from "../models/Subsidiary";
+>>>>>>> 7579664180d03bb7941392ae7fe6dd7589bf6384
 
 class SubsidiaryService {
   constructor() {
@@ -26,9 +31,15 @@ class SubsidiaryService {
     return sub;
   }
 
+<<<<<<< HEAD
   async fetchSubsidiaries(user) {
     const collRef = collection(db, this.collection);
     const q = query(collRef, where("userID", "==", user.uid));
+=======
+  async fetchSubsidiary() {
+    const collRef = collection(db, this.collection);
+    const q = query(collRef);
+>>>>>>> 7579664180d03bb7941392ae7fe6dd7589bf6384
     const queSnap = await getDocs(q);
 
     const subs = [];
