@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { auth } from '../../firebase/firebase';
+import { auth } from "../firebase/firebase";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -16,34 +16,32 @@ export default function RegisterPage() {
       const userCred = await createUserWithEmailAndPassword(
         auth,
         email,
-        password,
+        password
       );
 
       console.log(userCred);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }
   }
 
   return (
-    <div className='container my-4'>
-
-      <div className='card card-body'>
-
+    <div className="container my-4">
+      <div className="card card-body">
         <h1>Register</h1>
 
         <p>Please enter your email and password to register</p>
 
         <form onSubmit={onFormSubmit}>
-
           <div className="mb-3">
             <label className="form-label">Email address</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
-              className="form-control" />
+              className="form-control"
+            />
           </div>
 
           <div className="mb-3">
@@ -52,17 +50,17 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              className="form-control" />
+              className="form-control"
+            />
           </div>
 
-          <div className='d-flex justify-content-end mt-4'>
-            <button type='submit' className='btn btn-primary px-5'>
+          <div className="d-flex justify-content-end mt-4">
+            <button type="submit" className="btn btn-primary px-5">
               Register
             </button>
           </div>
         </form>
       </div>
-
     </div>
-  )
+  );
 }
