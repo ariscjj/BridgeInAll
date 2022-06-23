@@ -1,0 +1,49 @@
+{
+    "PersonData": [
+        {
+            "photo" : "",
+            "name" : "Ellis Myers",
+            "country" : "",
+            "role" : "Chief Executive Officer",
+            "email" : "ellis.myers@avocado.io",
+            "phone" : "+1-202-555-0130",
+            "status" : "Full Time"
+        },
+        {
+            "photo" : "",
+            "name" : "Halima Hunt",
+            "country" : "",
+            "role" : "Chief People Officer",
+            "email" : "halima.hunt@avocado.io",
+            "phone" : "+1-202-555-0195",
+            "status" : "Part Time"
+        },
+        {
+            "photo" : "",
+            "name" : "Jenna Diaz",
+            "country" : "",
+            "role" : "VP of Sales",
+            "email" : "jenna.diaz@avocado.io",
+            "phone" : "+1-202-555-0138",
+            "status" : "Full Time"
+        },
+        {
+            "photo" : "",
+            "name" : "Jamie Welch",
+            "country" : "",
+            "role" : "Chief Operations Officer",
+            "email" : "jamie.welch@avocado.io",
+            "phone" : "",
+            "status" : "Full Time"
+        },
+        {
+            "photo" : "",
+            "name" : "Fannie Shelton",
+            "country" : "",
+            "role" : "Talent Acquisition Manager",
+            "email" : "fannie.shelton@avocado.io",
+            "phone" : "",
+            "status" : "Maternity Leave"
+        }
+    ]
+}

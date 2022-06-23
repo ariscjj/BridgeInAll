@@ -17,7 +17,7 @@ class SubsidiaryService {
     this.collection = "subsidiaries";
   }
 
-  async createTask(sub) {
+  async createSubsidiary(sub) {
     const collRef = collection(db, this.collection);
 
     const docRef = await addDoc(collRef, sub.toJson());
@@ -26,7 +26,7 @@ class SubsidiaryService {
     return sub;
   }
 
-  async fetchTasks(user) {
+  async fetchSubsidiaries(user) {
     const collRef = collection(db, this.collection);
     const q = query(collRef, where("userID", "==", user.uid));
     const queSnap = await getDocs(q);
@@ -38,13 +38,13 @@ class SubsidiaryService {
     return subs;
   }
 
-  async updateTask(sub) {
+  async updateSubsidiary(sub) {
     const docRef = doc(db, this.collection, sub.id);
     await updateDoc(docRef, sub.toJson());
     return sub;
   }
 
-  async deleteTask(subId) {
+  async deleteSubsidiary(subId) {
     const docRef = doc(db, this.collection, subId);
     await deleteDoc(docRef);
   }

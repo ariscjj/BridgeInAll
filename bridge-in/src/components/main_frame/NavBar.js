@@ -19,80 +19,47 @@ function NavBar() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/countries"
+                to="/employeelist"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Countries
+                Employee List
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
                 exact
-                to="/people"
+                to="/addemployee"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                People
+                Add Employee
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
                 exact
-                to="/payroll"
+                to="/subsidiarylist"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Payroll
+                Subsidiary List
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
                 exact
-                to="/benefits"
+                to="/addsubsidiary"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-              Benefits
+                Add Subsidiary
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/expenses"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-              Expenses
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/finances"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-              Finances
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/legal"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-              Legal
-              </NavLink>
-            </li>      
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
