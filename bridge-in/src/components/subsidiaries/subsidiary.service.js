@@ -9,15 +9,15 @@ import {
   where,
 } from "firebase/firestore";
 
-import { db } from "../firebase/firebase";
-import { Subsidiary } from "./Subsidiary";
+import { db } from "../firebase/Firebase";
+import { Subsidiary } from "../models/Subsidiary";
 
 class SubsidiaryService {
   constructor() {
     this.collection = "subsidiaries";
   }
 
-  async createTask(sub) {
+  async createSubsidiary(sub) {
     const collRef = collection(db, this.collection);
 
     const docRef = await addDoc(collRef, sub.toJson());
@@ -26,9 +26,9 @@ class SubsidiaryService {
     return sub;
   }
 
-  async fetchTasks(user) {
+  async fetchSubsidiary() {
     const collRef = collection(db, this.collection);
-    const q = query(collRef, where("userID", "==", user.uid));
+    const q = query(collRef);
     const queSnap = await getDocs(q);
 
     const subs = [];
@@ -38,13 +38,13 @@ class SubsidiaryService {
     return subs;
   }
 
-  async updateTask(sub) {
+  async updateSubsidiary(sub) {
     const docRef = doc(db, this.collection, sub.id);
     await updateDoc(docRef, sub.toJson());
     return sub;
   }
 
-  async deleteTask(subId) {
+  async deleteSubsidiary(subId) {
     const docRef = doc(db, this.collection, subId);
     await deleteDoc(docRef);
   }
