@@ -29,7 +29,7 @@ export class Subsidiary {
 
   static fromFirebase(doc) {
     const data = doc.data();
-    return new Task(
+    return new Subsidiary(
       doc.id,
       data.name,
       data.country,
