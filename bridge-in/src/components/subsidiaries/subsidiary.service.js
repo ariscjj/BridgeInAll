@@ -9,8 +9,8 @@ import {
   where,
 } from "firebase/firestore";
 
-import { db } from "../firebase/firebase";
-import { Subsidiary } from "./Subsidiary";
+import { db } from "../firebase/Firebase";
+import { Subsidiary } from "../models/Subsidiary";
 
 class SubsidiaryService {
   constructor() {

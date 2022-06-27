@@ -29,6 +29,16 @@ export default function SubsidiaryListPage() {
   //   setSubsidiaries([...subsidiaries, subsidiary]);
   // }
 
+  async function onInitialLoad() {
+    const subsidiaries = await SubsidiaryService.fetchSubsidiary(); 
+    setSubsidiaries(subsidiaries);
+  }
+
+  async function onSubsidiaryCreate(name, country, address, count, status) {
+    const subsidiary = await SubsidiaryService.createSubsidiary(new Subsidiary(null, name, country, address, count, status));
+    setSubsidiaries([...subsidiaries, subsidiary]);
+  }
+
   console.log(subsidiaries);
 
   return (
