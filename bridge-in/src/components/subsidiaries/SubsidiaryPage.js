@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SubsidiaryService from "./subsidiary.service";
 
-export default function SubsidiaryPage() {
+export default function SubsidiaryPage(userstatus) {
   let { id } = useParams();
-  const userstatus = true;
+  const fakeuserstatus = true;
   const navigate = useNavigate();
 
   const [subsidiaries, setSubsidiaries] = useState([]);
@@ -46,18 +46,16 @@ export default function SubsidiaryPage() {
             </tr>
           </tbody>
         </table>
-        {
-          /*props.*/ userstatus ? (
-            <button
-              className="btn btn-primary"
-              onClick={() => navigate("/editsubsidiary/" + sub?.id)}
-            >
-              Edit
-            </button>
-          ) : (
-            <div></div>
-          )
-        }
+        {fakeuserstatus ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate("/editsubsidiary/" + sub?.id)}
+          >
+            Edit
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

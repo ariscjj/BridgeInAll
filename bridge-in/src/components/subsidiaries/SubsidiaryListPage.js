@@ -5,11 +5,6 @@ import Flag from "react-world-flags";
 import { Link } from "react-router-dom";
 
 export default function SubsidiaryListPage() {
-  /*const [subsidiaries, setSubsidiaries] = useState([new Subsidiary(1, "Avocado", "America", "421 w Melrose", 15, "incorporating"),
-  new Subsidiary(2, "Tomato", "Australia", "1034 N Wells", 6, "incorporated"),
-   new Subsidiary(3, "Pepper", "United Kingdom", "136 Broadway", 2, "winding down"),
-   new Subsidiary(4, "grape", "Germany", "1400 Harrison", 10, "closed")
-]); */
   const [subsidiaries, setSubsidiaries] = useState([]);
 
   useEffect(() => {
@@ -22,11 +17,6 @@ export default function SubsidiaryListPage() {
     const subsidiaries = await SubsidiaryService.fetchSubsidiary();
     setSubsidiaries(subsidiaries);
   }
-
-  // async function onSubsidiaryCreate(name, country, address, count, status) {
-  //   const subsidiary = await SubsidiaryService.createSubsidiary(new Subsidiary(null, name, country, address, count, status));
-  //   setSubsidiaries([...subsidiaries, subsidiary]);
-  // }
 
   async function onInitialLoad() {
     const subsidiaries = await SubsidiaryService.fetchSubsidiary();

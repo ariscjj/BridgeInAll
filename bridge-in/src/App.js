@@ -75,23 +75,12 @@ function App() {
                   }
                 />
               </Route>
-              {/* {subsidiaries.map((sub) => (
-                <div>
-                  
-                  <Route
-                    path={"/subsidiary/" + sub.id}
-                    element={
-                      <SubsidiaryPage
-                        subsidiary={sub} /*userstatus={user.level}
-                      />
-                    }
-                  />
-                  <Route
-                    path={"/editsubsidiary/" + sub.id}
-                    element={<EditSubsidiary subsidiary={sub} />}
-                  />
-                </div>
-              ))} */}
+              <Route path="editsubsidiary">
+                <Route
+                  path=":id"
+                  element={<EditSubsidiary subsidiaries={subsidiaries} />}
+                />
+              </Route>
             </Routes>
           </div>
         ) : (
