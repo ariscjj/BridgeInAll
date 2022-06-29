@@ -10,7 +10,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  
+
   async function onFormSubmit(e) {
     e.preventDefault();
 
@@ -20,9 +20,18 @@ export default function RegisterPage() {
         email,
         password,
       );
+      
+      await ProfileService.saveProfile(new Profile({
+        id: userCredentials.user.uid,
+        name: name,
+        surname, surname,
+        imageUrl: downloadUrl,
+      }))
+
 
       console.log(userCred);
       navigate('/');
+
     } catch (err) {
       alert(err.message);
     }
