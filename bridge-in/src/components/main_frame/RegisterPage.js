@@ -8,6 +8,8 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -31,11 +33,31 @@ export default function RegisterPage() {
       <div className="card card-body">
         <h1>Register</h1>
 
-        <p>Please enter your email and password to register</p>
+        <h4>Please enter your email and password to register</h4>
 
         <form onSubmit={onFormSubmit}>
           <div className="mb-3">
-            <label className="form-label">Email address</label>
+            <label className="form-label">Name</label>
+            <input
+              value={name}
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Surname</label>
+            <input
+              value={surname}
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setSurname(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Email Address</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -43,7 +65,6 @@ export default function RegisterPage() {
               className="form-control"
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -53,7 +74,6 @@ export default function RegisterPage() {
               className="form-control"
             />
           </div>
-
           <div className="d-flex justify-content-end mt-4">
             <button type="submit" className="btn btn-primary px-5">
               Register

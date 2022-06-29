@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { signInWithCustomToken, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import "./NavBar.css";
 
 function NavBar(props) {
   const [click, setClick] = useState(false);
-
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   async function onLogoutClicked() {
     setLoading(true);
     await signOut(auth);
+    navigate("/");
     setLoading(false);
   }
 
@@ -74,7 +75,7 @@ function NavBar(props) {
                 <li className="nav-item">
                   <button
                     className="btn"
-                    style={{ "border-color": "white", color: "white" }}
+                    style={{ borderColor: "white", color: "white" }}
                     loading={loading}
                     onClick={onLogoutClicked}
                   >

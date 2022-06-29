@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Subsidiary } from "./Subsidiary";
 import SubsidiaryService from "./subsidiary.service";
 import "bootstrap/dist/css/bootstrap.css";
-import NewSubsidiary from "./NewSubsidiary";
 import Flag from "react-world-flags";
+import { Link } from "react-router-dom";
 
 export default function SubsidiaryListPage() {
-  /*const [subsidiaries, setSubsidiaries] = useState([new Subsidiary(1, "Avocado", "America", "421 w Melrose", 15, "incorporating"),
-  new Subsidiary(2, "Tomato", "Australia", "1034 N Wells", 6, "incorporated"),
-   new Subsidiary(3, "Pepper", "United Kingdom", "136 Broadway", 2, "winding down"),
-   new Subsidiary(4, "grape", "Germany", "1400 Harrison", 10, "closed")
-]); */
   const [subsidiaries, setSubsidiaries] = useState([]);
 
   useEffect(() => {
@@ -24,10 +18,10 @@ export default function SubsidiaryListPage() {
     setSubsidiaries(subsidiaries);
   }
 
-  // async function onSubsidiaryCreate(name, country, address, count, status) {
-  //   const subsidiary = await SubsidiaryService.createSubsidiary(new Subsidiary(null, name, country, address, count, status));
-  //   setSubsidiaries([...subsidiaries, subsidiary]);
-  // }
+  async function onInitialLoad() {
+    const subsidiaries = await SubsidiaryService.fetchSubsidiary();
+    setSubsidiaries(subsidiaries);
+  }
 
   console.log(subsidiaries);
 
@@ -47,7 +41,9 @@ export default function SubsidiaryListPage() {
         <tbody className="align-middle">
           {subsidiaries.map((sub) => (
             <tr key={sub.id}>
-              <td>{sub.name}</td>
+              <td>
+                <Link to={"/subsidiary/" + sub.id}>{sub.name}</Link>
+              </td>
               <td>
                 <Flag code={sub.country} width="40" />
               </td>

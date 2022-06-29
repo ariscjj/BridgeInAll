@@ -10,6 +10,8 @@ import NewSubsidiary from "./components/subsidiaries/NewSubsidiary";
 import HomePage from "./components/main_frame/HomePage";
 import LoginPage from "./components/main_frame/LoginPage";
 import RegisterPage from "./components/main_frame/RegisterPage";
+import SubsidiaryPage from "./components/subsidiaries/SubsidiaryPage";
+import EditSubsidiary from "./components/subsidiaries/EditSubsidiary";
 
 import { Subsidiary } from "./components/subsidiaries/Subsidiary";
 import SubsidiaryService from "./components/subsidiaries/subsidiary.service";
@@ -63,6 +65,22 @@ function App() {
                   <NewSubsidiary onSubsidiaryCreate={onSubsidiaryCreate} />
                 }
               />
+              <Route path="subsidiary">
+                <Route
+                  path=":id"
+                  element={
+                    <SubsidiaryPage
+                      subsidiaries={subsidiaries} /*userstatus={user.level}*/
+                    />
+                  }
+                />
+              </Route>
+              <Route path="editsubsidiary">
+                <Route
+                  path=":id"
+                  element={<EditSubsidiary subsidiaries={subsidiaries} />}
+                />
+              </Route>
             </Routes>
           </div>
         ) : (

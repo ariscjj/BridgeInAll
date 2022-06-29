@@ -1,9 +1,5 @@
-import React, { Components, useState } from "react";
-
-// import { Subsidiary } from '../models/Subsidiary';
-// import SubsidiaryService from "./SubsidiaryService";
+import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
-// import SubsidiaryListPage from './SubsidiaryListPage';
 
 export default function NewSubsidiary(props) {
   const [name, setName] = useState("");
@@ -20,7 +16,6 @@ export default function NewSubsidiary(props) {
       employeeNum,
       "incorporating"
     );
-    console.log(name, selected, employeeNum, address);
     setName("");
     setSelected("");
     setAddress("");
