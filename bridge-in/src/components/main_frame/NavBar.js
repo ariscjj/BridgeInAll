@@ -75,7 +75,7 @@ function NavBar(props) {
                 <li className="nav-item">
                   <button
                     className="btn"
-                    style={{ "border-color": "white", color: "white" }}
+                    style={{ borderColor: "white", color: "white" }}
                     loading={loading}
                     onClick={onLogoutClicked}
                   >

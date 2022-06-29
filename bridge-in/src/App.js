@@ -10,6 +10,8 @@ import NewSubsidiary from "./components/subsidiaries/NewSubsidiary";
 import HomePage from "./components/main_frame/HomePage";
 import LoginPage from "./components/main_frame/LoginPage";
 import RegisterPage from "./components/main_frame/RegisterPage";
+import SubsidiaryPage from "./components/subsidiaries/SubsidiaryPage";
+import EditSubsidiary from "./components/subsidiaries/EditSubsidiary";
 
 import { Subsidiary } from "./components/subsidiaries/Subsidiary";
 import SubsidiaryService from "./components/subsidiaries/subsidiary.service";
@@ -63,6 +65,33 @@ function App() {
                   <NewSubsidiary onSubsidiaryCreate={onSubsidiaryCreate} />
                 }
               />
+              <Route path="subsidiary">
+                <Route
+                  path=":id"
+                  element={
+                    <SubsidiaryPage
+                      subsidiaries={subsidiaries} /*userstatus={user.level}*/
+                    />
+                  }
+                />
+              </Route>
+              {/* {subsidiaries.map((sub) => (
+                <div>
+                  
+                  <Route
+                    path={"/subsidiary/" + sub.id}
+                    element={
+                      <SubsidiaryPage
+                        subsidiary={sub} /*userstatus={user.level}
+                      />
+                    }
+                  />
+                  <Route
+                    path={"/editsubsidiary/" + sub.id}
+                    element={<EditSubsidiary subsidiary={sub} />}
+                  />
+                </div>
+              ))} */}
             </Routes>
           </div>
         ) : (
