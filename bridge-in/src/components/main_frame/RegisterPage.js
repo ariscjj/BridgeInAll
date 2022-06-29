@@ -8,7 +8,9 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  
   async function onFormSubmit(e) {
     e.preventDefault();
 
@@ -32,10 +34,73 @@ export default function RegisterPage() {
       <div className='card card-body'>
 
         <h1>Register</h1>
+        <div className='mb-3'>
+            <label className='form-label'>
+              Name
+            </label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              className='form-control'
+              required
+            />
+          </div>
+
+          <div className='mb-3'>
+            <label className='form-label'>
+              Surname
+            </label>
+            <input
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+              type="text"
+              className='form-control'
+              required
+            />
+          </div>
+
+
 
         <p>Please enter your email and password to register</p>
 
         <form onSubmit={onFormSubmit}>
+
+
+        <div className="mb-3">
+            <label className="form-label">First Name</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="string"
+              className="form-control" />
+          </div>j
+
+      
+          <div className='mb-3'>
+            <label className='form-label'>
+              Name
+            </label>
+            <input
+
+              type="text"
+              className='form-control'
+              required
+            />
+          </div>
+
+          <div className='mb-3'>
+            <label className='form-label'>
+              Surname
+            </label>
+            <input
+        
+              type="text"
+              className='form-control'
+              required
+            />
+          </div>
+
 
           <div className="mb-3">
             <label className="form-label">Email address</label>
