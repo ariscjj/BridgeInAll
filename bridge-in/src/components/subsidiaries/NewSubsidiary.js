@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { Components, useState } from "react";
+
+import { Subsidiary } from "../models/Subsidiary";
+import SubsidiaryService from "./SubsidiaryService";
 import ReactFlagsSelect from "react-flags-select";
+import SubsidiaryListPage from "./SubsidiaryListPage";
+import Alert from "./Alert";
 
 export default function NewSubsidiary(props) {
   const [name, setName] = useState("");
   const [employeeNum, setEmployeeNum] = useState("");
   const [address, setAddress] = useState("");
   const [selected, setSelected] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -16,6 +22,8 @@ export default function NewSubsidiary(props) {
       employeeNum,
       "incorporating"
     );
+    console.log(name, selected, employeeNum, address);
+    setShowAlert(true);
     setName("");
     setSelected("");
     setAddress("");
@@ -65,6 +73,11 @@ export default function NewSubsidiary(props) {
             </div>
           </div>
         </form>
+      </div>
+      <div>
+        <Alert show={showAlert} onHide={() => setShowAlert(false)}>
+          {<div>Your request to incorporate a new subsidiary was recieved</div>}
+        </Alert>
       </div>
     </div>
   );
