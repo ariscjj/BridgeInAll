@@ -1,10 +1,7 @@
 import React, { Components, useState } from "react";
 
-import { Subsidiary } from "../models/Subsidiary";
-import SubsidiaryService from "./SubsidiaryService";
 import ReactFlagsSelect from "react-flags-select";
-import SubsidiaryListPage from "./SubsidiaryListPage";
-import Alert from "./Alert";
+import Alert from "../common/Alert";
 
 export default function NewSubsidiary(props) {
   const [name, setName] = useState("");

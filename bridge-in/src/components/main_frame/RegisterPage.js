@@ -21,6 +21,16 @@ export default function RegisterPage() {
         password
       );
 
+      await ProfileService.saveProfile(
+        new Profile({
+          id: userCredentials.user.uid,
+          name: name,
+          surname,
+          surname,
+          imageUrl: downloadUrl,
+        })
+      );
+
       console.log(userCred);
       navigate("/");
     } catch (err) {
