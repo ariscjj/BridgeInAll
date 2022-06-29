@@ -4,32 +4,37 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from '../../firebase/firebase';
 
+import ProfileService from '../../main_frame/profile.service';
+import { Profile } from '../../main_frame/profile';
+
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
+  const [isBridgeInUser, setisBridgeInUser] = useState('');
 
   async function onFormSubmit(e) {
     e.preventDefault();
 
     try {
-      const userCred = await createUserWithEmailAndPassword(
+      const userCredentials = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
       );
-      
-      await ProfileService.saveProfile(new Profile({
+
+        await ProfileService.saveProfile(new Profile({
         id: userCredentials.user.uid,
         name: name,
         surname, surname,
-        imageUrl: downloadUrl,
+        isBridgeInUser: isBridgeInUser,
+     
       }))
 
 
-      console.log(userCred);
+      console.log(userCredentials);
       navigate('/');
 
     } catch (err) {
@@ -39,11 +44,13 @@ export default function RegisterPage() {
 
   return (
     <div className='container my-4'>
-
       <div className='card card-body'>
 
         <h1>Register</h1>
-        <div className='mb-3'>
+
+        <form className="mt-4" onSubmit={onFormSubmit}>
+
+          <div className='mb-3'>
             <label className='form-label'>
               Name
             </label>
@@ -69,74 +76,57 @@ export default function RegisterPage() {
             />
           </div>
 
-
-
-        <p>Please enter your email and password to register</p>
-
-        <form onSubmit={onFormSubmit}>
-
-
-        <div className="mb-3">
-            <label className="form-label">First Name</label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="string"
-              className="form-control" />
-          </div>j
-
-      
-          <div className='mb-3'>
-            <label className='form-label'>
-              Name
-            </label>
-            <input
-
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
-
-          <div className='mb-3'>
-            <label className='form-label'>
-              Surname
-            </label>
-            <input
-        
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
-
+    
 
           <div className="mb-3">
-            <label className="form-label">Email address</label>
+            <label className="form-label">
+              Email address
+            </label>
+
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
-              className="form-control" />
+              className="form-control"
+              required
+            />
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label className="form-label">
+              Password
+            </label>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              className="form-control" />
+              className="form-control"
+              required
+            />
           </div>
 
-          <div className='d-flex justify-content-end mt-4'>
-            <button type='submit' className='btn btn-primary px-5'>
+          <div className="mb-3">
+            <label className="form-label">
+             Are you a BridgeIN user?
+            </label>
+
+            <input type="radio"
+              value={isBridgeInUser}
+              onChange={(e) => setisBridgeInUser(e.target.value)}
+              type="boolean"
+              className="form-control"
+              required
+            />
+          </div>
+
+          <div className='text-center'>
+            <Button loading={loading} className='px-5'>
               Register
-            </button>
+            </Button>
           </div>
         </form>
+       
       </div>
-
     </div>
   )
 }
