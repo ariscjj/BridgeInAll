@@ -16,7 +16,6 @@ export default function NewSubsidiary(props) {
       employeeNum,
       "incorporating"
     );
-    console.log(name, selected, employeeNum, address);
     setName("");
     setSelected("");
     setAddress("");

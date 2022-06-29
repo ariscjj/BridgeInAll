@@ -6,17 +6,11 @@ import { auth } from "../firebase/firebase";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-<<<<<<< HEAD
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
 
-=======
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  
->>>>>>> 4beb42212cd874a672f8fba2d1211e6e10a0dd85
   async function onFormSubmit(e) {
     e.preventDefault();
 
@@ -38,79 +32,32 @@ export default function RegisterPage() {
     <div className="container my-4">
       <div className="card card-body">
         <h1>Register</h1>
-        <div className='mb-3'>
-            <label className='form-label'>
-              Name
-            </label>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
 
-          <div className='mb-3'>
-            <label className='form-label'>
-              Surname
-            </label>
-            <input
-              value={surname}
-              onChange={(e) => setSurname(e.target.value)}
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
-
-
-
-        <p>Please enter your email and password to register</p>
+        <h4>Please enter your email and password to register</h4>
 
         <form onSubmit={onFormSubmit}>
-<<<<<<< HEAD
-=======
-
-
-        <div className="mb-3">
-            <label className="form-label">First Name</label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="string"
-              className="form-control" />
-          </div>j
-
-      
-          <div className='mb-3'>
-            <label className='form-label'>
-              Name
-            </label>
-            <input
-
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
-
-          <div className='mb-3'>
-            <label className='form-label'>
-              Surname
-            </label>
-            <input
-        
-              type="text"
-              className='form-control'
-              required
-            />
-          </div>
-
-
->>>>>>> 4beb42212cd874a672f8fba2d1211e6e10a0dd85
           <div className="mb-3">
-            <label className="form-label">Email address</label>
+            <label className="form-label">Name</label>
+            <input
+              value={name}
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Surname</label>
+            <input
+              value={surname}
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setSurname(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Email Address</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +65,6 @@ export default function RegisterPage() {
               className="form-control"
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -128,7 +74,6 @@ export default function RegisterPage() {
               className="form-control"
             />
           </div>
-
           <div className="d-flex justify-content-end mt-4">
             <button type="submit" className="btn btn-primary px-5">
               Register
