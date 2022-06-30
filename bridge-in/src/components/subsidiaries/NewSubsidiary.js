@@ -1,4 +1,4 @@
-import React, { Components, useState } from "react";
+import React, { useState } from "react";
 
 import ReactFlagsSelect from "react-flags-select";
 import Alert from "../common/Alert";

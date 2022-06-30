@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SubsidiaryService from "./subsidiary.service";
+import Flag from "react-world-flags";
+import ProfileService from "../auth/profile.service";
 
-export default function SubsidiaryPage(userstatus) {
+export default function SubsidiaryPage({ user }) {
   let { id } = useParams();
-  const fakeuserstatus = true;
   const navigate = useNavigate();
 
   const [subsidiaries, setSubsidiaries] = useState([]);
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
+    console.log(user);
     if (!subsidiaries.length) {
-      onInitialLoad();
+      onSubInitialLoad();
+    }
+    if (!profile) {
+      onProInitialLoad();
     }
   }, []);
 
-  async function onInitialLoad() {
+  async function onSubInitialLoad() {
     const subsidiaries = await SubsidiaryService.fetchSubsidiary();
     setSubsidiaries(subsidiaries);
   }
 
+  async function onProInitialLoad() {
+    console.log("setting profile");
+    const prof = await ProfileService.fetchProfile(user);
+    setProfile(prof);
+  }
+
+  console.log("user ", { user });
+  console.log("profile ", { profile });
   const sub = subsidiaries.find((subsidiary) => subsidiary.id === id);
 
   return (
@@ -34,7 +48,9 @@ export default function SubsidiaryPage(userstatus) {
             </tr>
             <tr>
               <td className="fw-bold">Country</td>
-              <td>{sub?.country}</td>
+              <td>
+                <Flag code={sub?.country} width="40" />
+              </td>
             </tr>
             <tr>
               <td className="fw-bold">Employee Count</td>
@@ -46,7 +62,7 @@ export default function SubsidiaryPage(userstatus) {
             </tr>
           </tbody>
         </table>
-        {fakeuserstatus ? (
+        {profile?.level ? (
           <button
             className="btn btn-primary"
             onClick={() => navigate("/editsubsidiary/" + sub?.id)}
