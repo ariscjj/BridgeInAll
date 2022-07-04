@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SubsidiaryService from "./subsidiary.service";
+import ImportantDocService from "./fileServices/importantDoc.service";
+import "./fileServices/importantDocs.css"
 
 export default function SubsidiaryPage(userstatus) {
   let { id } = useParams();
@@ -8,12 +10,25 @@ export default function SubsidiaryPage(userstatus) {
   const navigate = useNavigate();
 
   const [subsidiaries, setSubsidiaries] = useState([]);
+  const [importantDocuments, setImportantDocuments] = useState([]);
 
   useEffect(() => {
     if (!subsidiaries.length) {
       onInitialLoad();
+      fetchImportantDocuments();
+
     }
   }, []);
+
+  async function fetchImportantDocuments() {
+    try {
+      const importantDocs = await ImportantDocService.fetchImportantDocs();
+      setImportantDocuments(importantDocs);
+    } catch (err) {
+        //todo handle errors
+    }
+  }
+
 
   async function onInitialLoad() {
     const subsidiaries = await SubsidiaryService.fetchSubsidiary();
@@ -21,6 +36,7 @@ export default function SubsidiaryPage(userstatus) {
   }
 
   const sub = subsidiaries.find((subsidiary) => subsidiary.id === id);
+  const filteredDocs = importantDocuments.filter(importantDoc => importantDoc.subsidiaryId == id );
 
   return (
     <div className="container mt-3">
@@ -56,6 +72,21 @@ export default function SubsidiaryPage(userstatus) {
         ) : (
           <div></div>
         )}
+ <div className='d-flex flex-wrap'>
+        {
+          filteredDocs.map(importantDoc => 
+            
+            <div key={importantDoc.id} className="card" >
+              <img src={importantDoc.downloadUrl} className="card-img-top importantDoc" alt="movie cover" />
+              <div className="card-body">
+                <h5 className="card-title">{importantDoc.name}</h5>
+              </div>
+            </div> 
+) 
+        } 
+      </div>
+
+
       </div>
     </div>
   );

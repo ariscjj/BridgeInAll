@@ -24,6 +24,7 @@ function App() {
   const [subsidiaries, setSubsidiaries] = useState([]);
   const [user, setUser] = useState(null);
   const [isUserUpdated, setIsUserUpdated] = useState(false);
+  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

@@ -6,11 +6,11 @@ export class Subsidiary {
     this.address = address;
     this.count = count;
     this.status = status;
-    if (status === "incorporating") {
+    if (status === "Incorporating") {
       this.color = "warning";
-    } else if (status === "incorporated") {
+    } else if (status === "Incorporated") {
       this.color = "primary";
-    } else if (status === "winding down") {
+    } else if (status === "Winding Down") {
       this.color = "danger";
     } else {
       this.color = "secondary";
