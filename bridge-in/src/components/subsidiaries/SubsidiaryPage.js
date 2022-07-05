@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import SubsidiaryService from "./subsidiary.service";
 import Flag from "react-world-flags";
 import ProfileService from "../auth/profile.service";
+import ImportantDocService from "./fileServices/importantDoc.service";
+import "./fileServices/importantDocs.css";
 
 export default function SubsidiaryPage({ user }) {
   let { id } = useParams();
@@ -10,18 +12,29 @@ export default function SubsidiaryPage({ user }) {
 
   const [subsidiaries, setSubsidiaries] = useState([]);
   const [profile, setProfile] = useState(null);
+  const [importantDocuments, setImportantDocuments] = useState([]);
 
   useEffect(() => {
     console.log(user);
     if (!subsidiaries.length) {
-      onSubInitialLoad();
+      onInitialLoad();
+      fetchImportantDocuments();
     }
     if (!profile) {
       onProInitialLoad();
     }
   }, []);
 
-  async function onSubInitialLoad() {
+  async function fetchImportantDocuments() {
+    try {
+      const importantDocs = await ImportantDocService.fetchImportantDocs();
+      setImportantDocuments(importantDocs);
+    } catch (err) {
+      //todo handle errors
+    }
+  }
+
+  async function onInitialLoad() {
     const subsidiaries = await SubsidiaryService.fetchSubsidiary();
     setSubsidiaries(subsidiaries);
   }
@@ -33,9 +46,21 @@ export default function SubsidiaryPage({ user }) {
   }
 
   const sub = subsidiaries.find((subsidiary) => subsidiary.id === id);
+  const filteredDocs = importantDocuments.filter(
+    (importantDoc) => importantDoc.subsidiaryId == id
+  );
 
   return (
     <div className="container mt-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start p-2">
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick={(e) => navigate("/subsidiarylist")}
+        >
+          Back
+        </button>
+      </div>
       <div className="card text-center">
         <h1>{sub?.name}</h1>
         <table class="table table-bordered">
@@ -70,6 +95,20 @@ export default function SubsidiaryPage({ user }) {
         ) : (
           <div></div>
         )}
+        <div className="d-flex flex-wrap">
+          {filteredDocs.map((importantDoc) => (
+            <div key={importantDoc.id} className="card">
+              <img
+                src={importantDoc.downloadUrl}
+                className="card-img-top importantDoc"
+                alt="movie cover"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{importantDoc.name}</h5>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
