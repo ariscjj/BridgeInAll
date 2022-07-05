@@ -39,6 +39,7 @@ export default function EditSubsidiary() {
 
   async function updateSubsidiary(e) {
     console.log(subsidiaryToUpdate);
+    console.log(status);
     e.preventDefault();
     if (name) {
       console.log("is running for name");
@@ -52,12 +53,14 @@ export default function EditSubsidiary() {
       console.log("is running for address");
       subsidiaryToUpdate.address = address;
     }
-    if (status) {
+    if (status && status!= "Select Status") {
       console.log("is running for status");
       subsidiaryToUpdate.status = status;
     }
 
-    await createNewImportantDoc();
+    if(file){
+      await createNewImportantDoc();
+    }
 
 
     console.log(subsidiaryToUpdate);
@@ -79,7 +82,7 @@ export default function EditSubsidiary() {
     );
 
    
-    
+    navigate('/subsidiary/' + subsidiaryToUpdate.id);
   }
 
   async function createNewImportantDoc(){
@@ -94,8 +97,6 @@ export default function EditSubsidiary() {
         subsidiaryId: subsidiaryToUpdate.id,
       }));
 
-
-      navigate('/subsidiary/' + subsidiaryToUpdate.id);
       
     } catch (err) {
       // TODO handle this
@@ -113,7 +114,7 @@ export default function EditSubsidiary() {
   return (
     <div className="container text-center">
       <h1 className="m-3">Update</h1>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start p-2">
       <button type="button" class="btn btn-primary" 
       onClick={(e) => navigate('/subsidiary/' + subsidiaryToUpdate.id)}>Back</button>
       </div>
@@ -140,27 +141,37 @@ export default function EditSubsidiary() {
             className="form-control mb-3"
             placeholder="Address"
           />
-          <input
+          {/* <input
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             type="text"
             className="form-control mb-3"
             placeholder="Status"
-          />
+          /> */}
 
-{/* <div class="input-group mb-3"> 
-<div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+{/* <div className="input-group form-control mb-3"> 
+  <div className="input-group-prepend">
+    <label className="input-group-text" for="inputGroupSelect01">Status</label>
   </div>
-          <select class="custom-select" id="inputGroupSelect01" 
-            onChange={(e) => setStatus(e.target.value)}>
-            <option selected>Status</option>
-            <option value={status}>Incorporating</option>
-            <option value={status}>Incorporated</option>
-            <option value={status}>WindingDown</option>
-            <option value={status}>Closed</option>
+          <select className="custom-select" id="inputGroupSelect01" defaultValue={status}
+            onChange={(e) => 
+            setStatus(e.target.value)}>
+            
+            <option value="Incorporating" >Incorporating</option>
+            <option value="Incorporated">Incorporated</option>
+            <option value="Winding Down">Winding Down</option>
+            <option value="Closed">Closed</option>
           </select>
           </div> */}
+
+<select class="form-select" aria-label="Default select example" onChange={(e) => 
+            setStatus(e.target.value)} defaultValue={status}>
+  <option selected>Select Status</option>
+  <option value="Incorporating">Incorporating</option>
+  <option value="Incorporated">Incorporated</option>
+  <option value="Winding Down">Winding Down</option>
+  <option value="Closed">Closed</option>
+</select>
 
       <ImageSelector
             onFileChange={(file) => setFile(file)}

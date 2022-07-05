@@ -14,7 +14,7 @@ import {
         // get a reference to the firebase file location we want to store our file
         const fileRef = ref(storage, 'importantDocs/'+ file.name);
         const uploadTask = uploadBytesResumable(fileRef, file);
-  
+        console.log("uploadImage being run");
         uploadTask.on('state_changed',
           (snapshot) => {
   

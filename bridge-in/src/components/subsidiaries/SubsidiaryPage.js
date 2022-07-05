@@ -40,6 +40,10 @@ export default function SubsidiaryPage(userstatus) {
 
   return (
     <div className="container mt-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start p-2">
+      <button type="button" class="btn btn-primary" 
+      onClick={(e) => navigate('/subsidiarylist')}>Back</button>
+      </div>
       <div className="card text-center">
         <h1>{sub?.name}</h1>
         <table class="table table-bordered">
