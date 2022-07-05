@@ -5,13 +5,12 @@ import { Role } from "./Profile";
 
 import { auth } from "../firebase/firebase";
 
-export default function RegisterPage(props) {
+export default function AdminRegisterPage(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [role, setRole] = useState(Role.employee);
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -23,13 +22,18 @@ export default function RegisterPage(props) {
         password
       );
 
-      props.onProfileCreate(userCred.user.uid, name, surname, role, false);
+      props.onProfileCreate(
+        userCred.user.uid,
+        name,
+        surname,
+        Role.admin,
+        false
+      );
 
       console.log(userCred);
       setName("");
       setSurname("");
       setEmail("");
-      setRole(null);
       setPassword("");
 
       navigate("/");
@@ -83,34 +87,6 @@ export default function RegisterPage(props) {
               type="password"
               className="form-control"
             />
-          </div>
-          <div className="form-check form-check-inline required">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              required
-              checked={role === Role.employee}
-              onChange={(e) => setRole(Role.employee)}
-            />
-            <label className="form-check-label" htmlFor="inlineRadio1">
-              Employee
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              required
-              checked={role === Role.company}
-              onChange={(e) => setRole(Role.company)}
-            />
-            <label className="form-check-label" htmlFor="inlineRadio2">
-              Company
-            </label>
           </div>
           <div className="d-flex justify-content-end mt-4">
             <button type="submit" className="btn btn-primary px-5">

@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import ProfileService from "../auth/profile.service";
+import { Role } from "../auth/Profile";
 import "./NavBar.css";
 
 function NavBar(props) {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    if (!profile && props.user) {
+      onProInitialLoad();
+    }
+  });
+
+  async function onProInitialLoad() {
+    console.log("setting profile");
+    const prof = await ProfileService.fetchProfile(props.user);
+    setProfile(prof);
+    console.log(prof);
+  }
 
   async function onLogoutClicked() {
     setLoading(true);
@@ -26,52 +42,148 @@ function NavBar(props) {
             <i className="fas fa-code"></i>
           </NavLink>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-            {props.user ? (
+            {props.user && profile ? (
               <>
-                <li className="nav-item">
-                  <NavLink
-                    exact
-                    to="/employeelist"
-                    activeClassName="active"
-                    className="nav-links"
-                    onClick={handleClick}
-                  >
-                    Employee List
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    exact
-                    to="/addemployee"
-                    activeClassName="active"
-                    className="nav-links"
-                    onClick={handleClick}
-                  >
-                    Add Employee
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    exact
-                    to="/subsidiarylist"
-                    activeClassName="active"
-                    className="nav-links"
-                    onClick={handleClick}
-                  >
-                    Subsidiary List
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    exact
-                    to="/addsubsidiary"
-                    activeClassName="active"
-                    className="nav-links"
-                    onClick={handleClick}
-                  >
-                    Add Subsidiary
-                  </NavLink>
-                </li>
+                {console.log(profile)}
+                {profile.role === Role.employee ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addemployee"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Onboard Employee
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {profile.role === Role.company ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/employeelist"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Employee List
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/subsidiarylist"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Subsidiary List
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addsubsidiary"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Add Subsidiary
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {console.log(
+                  "this is the admin profile status: " + profile?.admin
+                )}
+                {console.log("this is the profile status: " + profile)}
+                {profile.role === Role.admin ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addemployee"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Add Employee
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/subsidiarylist"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Subsidiary List
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addsubsidiary"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Add Subsidiary
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {profile.role === Role.superAdmin ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addemployee"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Add Employee
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/subsidiarylist"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Subsidiary List
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact
+                        to="/addsubsidiary"
+                        // //activeClassName="active"
+
+                        className="nav-links active"
+                        onClick={handleClick}
+                      >
+                        Add Subsidiary
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <li className="nav-item">
                   <button
                     className="btn"
@@ -89,7 +201,7 @@ function NavBar(props) {
                   <NavLink
                     exact
                     to="/register"
-                    activeClassName="active"
+                    //activeClassName="active"
                     className="nav-links"
                     onClick={handleClick}
                   >
@@ -100,7 +212,7 @@ function NavBar(props) {
                   <NavLink
                     exact
                     to="/login"
-                    activeClassName="active"
+                    //activeClassName="active"
                     className="nav-links"
                     onClick={handleClick}
                   >

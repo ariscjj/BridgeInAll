@@ -12,6 +12,7 @@ import LoginPage from "./components/auth/LoginPage";
 import RegisterPage from "./components/auth/RegisterPage";
 import SubsidiaryPage from "./components/subsidiaries/SubsidiaryPage";
 import EditSubsidiary from "./components/subsidiaries/EditSubsidiary";
+import AdminRegisterPage from "./components/auth/AdminRegisterPage";
 
 import { Subsidiary } from "./components/subsidiaries/Subsidiary";
 import SubsidiaryService from "./components/subsidiaries/subsidiary.service";
@@ -42,9 +43,9 @@ function App() {
     setSubsidiaries([...subsidiaries, subsidiary]);
   }
 
-  async function onProfileCreate(id, name, surname, level) {
+  async function onProfileCreate(id, name, surname, role, approved) {
     const profile = await ProfileService.saveProfile(
-      new Profile(id, name, surname, level)
+      new Profile(id, name, surname, role, approved)
     );
     setProfiles([...profiles, profile]);
   }
@@ -68,6 +69,12 @@ function App() {
               <Route
                 path="/register"
                 element={<RegisterPage onProfileCreate={onProfileCreate} />}
+              />
+              <Route
+                path="/adminregister/nCYn0s5EePSj9hyj5JFo9RGYh5w1"
+                element={
+                  <AdminRegisterPage onProfileCreate={onProfileCreate} />
+                }
               />
               <Route path="/employeelist" element={<EmployeeTable />} />
               <Route path="/addemployee" element={<EmployeeInput />} />

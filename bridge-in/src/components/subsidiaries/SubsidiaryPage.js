@@ -32,8 +32,6 @@ export default function SubsidiaryPage({ user }) {
     setProfile(prof);
   }
 
-  console.log("user ", { user });
-  console.log("profile ", { profile });
   const sub = subsidiaries.find((subsidiary) => subsidiary.id === id);
 
   return (
