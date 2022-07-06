@@ -89,16 +89,16 @@ export default function EmployeeInput(props) {
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
-        <h5 class="card-title">Add an Employee</h5>
+        <h5 className="card-title">Add an Employee</h5>
         <form onSubmit={onEmployeeFormSubmit}>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Photo
             </label>
             <div className="input-group mb-3">
               <input
                 type="file"
-                class="form-control"
+                className="form-control"
                 id="inputGroupFile02"
                 accept=".png, .jpg, .jpeg"
                 onChange={onFileSelected}
@@ -106,7 +106,7 @@ export default function EmployeeInput(props) {
             </div>
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Name
             </label>
             <input
@@ -118,7 +118,7 @@ export default function EmployeeInput(props) {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Country
             </label>
             <ReactFlagsSelect
@@ -129,7 +129,7 @@ export default function EmployeeInput(props) {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Role
             </label>
             <input
@@ -141,7 +141,7 @@ export default function EmployeeInput(props) {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Email
             </label>
             <input
@@ -153,7 +153,7 @@ export default function EmployeeInput(props) {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Phone
             </label>
             <input
@@ -165,11 +165,11 @@ export default function EmployeeInput(props) {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
               Status
             </label>
             <select
-              class="form-select"
+              className="form-select"
               aria-label="Default select example"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
