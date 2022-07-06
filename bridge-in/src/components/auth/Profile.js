@@ -31,6 +31,10 @@ export class Profile {
       data.approved
     );
   }
+
+  updateApproval() {
+    this.approved = !this.approved;
+  }
 }
 
 export class Role {

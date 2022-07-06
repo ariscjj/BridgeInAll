@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Role } from "./Profile";
-
+import ProfileService from "./profile.service";
 import { auth } from "../firebase/firebase";
 
 export default function AdminRegisterPage(props) {
@@ -11,6 +11,7 @@ export default function AdminRegisterPage(props) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [url, setUrl] = useState("");
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -30,7 +31,8 @@ export default function AdminRegisterPage(props) {
         false
       );
 
-      console.log(userCred);
+      //setUrl(ProfileService.homeUrl(Role.admin, false));
+
       setName("");
       setSurname("");
       setEmail("");

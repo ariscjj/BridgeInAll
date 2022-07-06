@@ -37,7 +37,7 @@ export default function EmployeeInput(props) {
 
     try {
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
-        console.log("Upload Progress: ", progress);
+        //console.log("Upload Progress: ", progress);
       });
 
       const employee = await EmployeeService.createEmployee(
@@ -52,7 +52,7 @@ export default function EmployeeInput(props) {
           status
         )
       );
-      console.log("CREATED EMPLOYEE");
+      //console.log("CREATED EMPLOYEE");
       setEmployees([...employees, employee]);
       setPhoto(null);
       setName("");
@@ -68,7 +68,7 @@ export default function EmployeeInput(props) {
 
   //   function onEmployeeFormSubmit(e){
   //     props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-  //     console.log("CREATING EMPLOYEE");
+  //     //console.log("CREATING EMPLOYEE");
   //     setPhoto(null);
   //     setName('');
   //     setCountry('');

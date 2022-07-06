@@ -18,10 +18,10 @@ class EmployeeService {
 
   async createEmployee(employee) {
     const collectionRef = collection(db, this.collection);
-    console.log("got colloection");
+    //console.log("got colloection");
     const d = new Date();
     let time = d.getTime();
-    console.log(time);
+    //console.log(time);
     const docRef = await addDoc(collectionRef, {
       id: time,
       photo: employee.photo,
@@ -34,11 +34,11 @@ class EmployeeService {
     });
 
     // employee.toJson());
-    console.log("adding doc");
+    //console.log("adding doc");
 
     // employee.id = docRef.id;
     // await updateDoc(docRef, employee.toJson());
-    console.log("updatedDoc");
+    //console.log("updatedDoc");
 
     return employee;
   }

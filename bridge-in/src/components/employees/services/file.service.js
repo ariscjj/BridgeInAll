@@ -22,12 +22,12 @@ class FileService {
         },
         (error) => {
           // an error occurred
-          console.log(error);
+          //console.log(error);
           reject(this.handleError(error));
         },
         () => {
           // upload complete successful
-          console.log("UPLOAD SUCCESSFUL");
+          //console.log("UPLOAD SUCCESSFUL");
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
             resolve(downloadUrl);
           });

@@ -5,6 +5,7 @@ import Flag from "react-world-flags";
 import ProfileService from "../auth/profile.service";
 import ImportantDocService from "./fileServices/importantDoc.service";
 import "./fileServices/importantDocs.css";
+import { Role } from "../auth/Profile";
 
 export default function SubsidiaryPage({ user }) {
   let { id } = useParams();
@@ -15,13 +16,13 @@ export default function SubsidiaryPage({ user }) {
   const [importantDocuments, setImportantDocuments] = useState([]);
 
   useEffect(() => {
-    console.log(user);
+    //console.log(user);
+    if (!profile) {
+      onProInitialLoad();
+    }
     if (!subsidiaries.length) {
       onInitialLoad();
       fetchImportantDocuments();
-    }
-    if (!profile) {
-      onProInitialLoad();
     }
   }, []);
 
@@ -40,22 +41,23 @@ export default function SubsidiaryPage({ user }) {
   }
 
   async function onProInitialLoad() {
-    console.log("setting profile");
+    //console.log("setting profile");
     const prof = await ProfileService.fetchProfile(user);
+    //console.log(prof);
     setProfile(prof);
   }
 
   const sub = subsidiaries.find((subsidiary) => subsidiary.id === id);
   const filteredDocs = importantDocuments.filter(
-    (importantDoc) => importantDoc.subsidiaryId == id
+    (importantDoc) => importantDoc.subsidiaryId === id
   );
 
   return (
     <div className="container mt-3">
-      <div class="d-grid gap-2 d-md-flex justify-content-md-start p-2">
+      <div className="d-grid gap-2 d-md-flex justify-content-md-start p-2">
         <button
           type="button"
-          class="btn btn-primary"
+          className="btn btn-primary"
           onClick={(e) => navigate("/subsidiarylist")}
         >
           Back
@@ -63,7 +65,7 @@ export default function SubsidiaryPage({ user }) {
       </div>
       <div className="card text-center">
         <h1>{sub?.name}</h1>
-        <table class="table table-bordered">
+        <table className="table table-bordered">
           <tbody>
             <tr>
               <td className="fw-bold">Address</td>
@@ -85,7 +87,7 @@ export default function SubsidiaryPage({ user }) {
             </tr>
           </tbody>
         </table>
-        {profile?.level ? (
+        {profile?.role === Role.admin || profile?.role === Role.superAdmin ? (
           <button
             className="btn btn-primary"
             onClick={() => navigate("/editsubsidiary/" + sub?.id)}

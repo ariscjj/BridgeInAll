@@ -18,7 +18,7 @@ export default function SubsidiaryListPage() {
     setSubsidiaries(subsidiaries);
   }
 
-  console.log(subsidiaries);
+  //console.log(subsidiaries);
 
   return (
     <div className="container mt-5">

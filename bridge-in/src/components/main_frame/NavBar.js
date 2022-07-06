@@ -16,18 +16,20 @@ function NavBar(props) {
     if (!profile && props.user) {
       onProInitialLoad();
     }
-  });
+  }, [props.user]);
 
   async function onProInitialLoad() {
-    console.log("setting profile");
+    //console.log("setting profile");
     const prof = await ProfileService.fetchProfile(props.user);
+    //console.log(prof.name, " ", prof);
     setProfile(prof);
-    console.log(prof);
   }
 
   async function onLogoutClicked() {
     setLoading(true);
     await signOut(auth);
+    setProfile(null);
+    props.onLogoutClicked();
     navigate("/");
     setLoading(false);
   }
@@ -37,19 +39,19 @@ function NavBar(props) {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
+          <NavLink exact="true" to="/" className="nav-logo">
             Bridge-In
             <i className="fas fa-code"></i>
           </NavLink>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
+            {/* {//console.log(profile.role)} */}
             {props.user && profile ? (
               <>
-                {console.log(profile)}
                 {profile.role === Role.employee ? (
                   <>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addemployee"
                         //activeClassName="active"
                         className="nav-links"
@@ -66,7 +68,7 @@ function NavBar(props) {
                   <>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/employeelist"
                         //activeClassName="active"
                         className="nav-links"
@@ -77,7 +79,7 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/subsidiarylist"
                         //activeClassName="active"
                         className="nav-links"
@@ -88,7 +90,7 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addsubsidiary"
                         //activeClassName="active"
                         className="nav-links"
@@ -101,15 +103,11 @@ function NavBar(props) {
                 ) : (
                   <></>
                 )}
-                {console.log(
-                  "this is the admin profile status: " + profile?.admin
-                )}
-                {console.log("this is the profile status: " + profile)}
                 {profile.role === Role.admin ? (
                   <>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addemployee"
                         //activeClassName="active"
                         className="nav-links"
@@ -120,7 +118,7 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/subsidiarylist"
                         //activeClassName="active"
                         className="nav-links"
@@ -131,7 +129,7 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addsubsidiary"
                         //activeClassName="active"
                         className="nav-links"
@@ -148,7 +146,7 @@ function NavBar(props) {
                   <>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addemployee"
                         //activeClassName="active"
                         className="nav-links"
@@ -159,7 +157,18 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
+                        to="/approveadmin"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Admin Approval
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact="true"
                         to="/subsidiarylist"
                         //activeClassName="active"
                         className="nav-links"
@@ -170,11 +179,9 @@ function NavBar(props) {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        exact
+                        exact="true"
                         to="/addsubsidiary"
-                        // //activeClassName="active"
-
-                        className="nav-links active"
+                        className="nav-links"
                         onClick={handleClick}
                       >
                         Add Subsidiary
@@ -188,7 +195,6 @@ function NavBar(props) {
                   <button
                     className="btn"
                     style={{ borderColor: "white", color: "white" }}
-                    loading={loading}
                     onClick={onLogoutClicked}
                   >
                     Logout
@@ -199,7 +205,7 @@ function NavBar(props) {
               <>
                 <li className="nav-item">
                   <NavLink
-                    exact
+                    exact="true"
                     to="/register"
                     //activeClassName="active"
                     className="nav-links"
@@ -210,7 +216,7 @@ function NavBar(props) {
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    exact
+                    exact="true"
                     to="/login"
                     //activeClassName="active"
                     className="nav-links"

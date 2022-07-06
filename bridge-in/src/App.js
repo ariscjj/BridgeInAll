@@ -13,6 +13,7 @@ import RegisterPage from "./components/auth/RegisterPage";
 import SubsidiaryPage from "./components/subsidiaries/SubsidiaryPage";
 import EditSubsidiary from "./components/subsidiaries/EditSubsidiary";
 import AdminRegisterPage from "./components/auth/AdminRegisterPage";
+import AdminList from "./components/admin_edit/AdminList";
 
 import { Subsidiary } from "./components/subsidiaries/Subsidiary";
 import SubsidiaryService from "./components/subsidiaries/subsidiary.service";
@@ -22,16 +23,13 @@ import ProfileService from "./components/auth/profile.service";
 
 import Spinner from "./components/common/Spinner";
 import RequireAuth from "./components/common/RequireAuth";
+import PendingAdminPage from "./components/homepages/PendingAdminPage";
 
 function App() {
   const [subsidiaries, setSubsidiaries] = useState([]);
   const [user, setUser] = useState(null);
   const [isUserUpdated, setIsUserUpdated] = useState(false);
-<<<<<<< HEAD
   const [profiles, setProfiles] = useState([]);
-=======
-  
->>>>>>> a389c4b9e3965ea23d739d0230c1c6a45ce9c515
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -54,10 +52,14 @@ function App() {
     setProfiles([...profiles, profile]);
   }
 
+  function onLogoutClicked() {
+    setUser(null);
+  }
+
   return (
     <>
       <BrowserRouter>
-        <NavBar user={user} />
+        <NavBar user={user} onLogoutClicked={onLogoutClicked} />
         {isUserUpdated ? (
           <div className="pages">
             <Routes>
@@ -83,6 +85,11 @@ function App() {
               <Route path="/employeelist" element={<EmployeeTable />} />
               <Route path="/addemployee" element={<EmployeeInput />} />
               <Route path="/subsidiarylist" element={<SubsidiaryListPage />} />
+              {/* <Route path="/adminpending" element={<PendingAdminPage />} /> */}
+              <Route
+                path="/approveadmin"
+                element={<AdminList profiles={profiles} />}
+              />
               <Route
                 path="/addsubsidiary"
                 element={

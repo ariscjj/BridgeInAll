@@ -19,7 +19,7 @@ export default function EmployeeTable() {
   }
 
   function colorStatus(status) {
-    //    console.log(status);
+    //    //console.log(status);
     const base = "badge text-bg-";
     if (status === "Hired") {
       return base + "success";
