@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Flag from "react-world-flags";
 
-import StatusBox from "../../common/StatusBox";
-import EmployeeService from "../../services/employee.service.js";
+import StatusBox from "../common/StatusBox";
+import EmployeeService from "../services/employee.service.js";
 
 export default function EmployeeTable() {
   const [employees, setEmployees] = useState([]);

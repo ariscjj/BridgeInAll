@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SubsidiaryService from "./subsidiary.service";
 import Flag from "react-world-flags";
-//import ProfileService from "../auth/profile.service";
+import ProfileService from "../auth/profile.service";
 import ImportantDocService from "./fileServices/importantDoc.service";
 import "./fileServices/importantDocs.css";
 import { Role } from "../auth/Profile";

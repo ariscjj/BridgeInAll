@@ -1,49 +1,44 @@
 import {
-  collection, addDoc,
-  query, getDocs,
-  doc, updateDoc,
-  deleteDoc
-} from 'firebase/firestore';
+  collection,
+  addDoc,
+  query,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
-import { db } from '../firebase/firebase';
-import { Employee } from '../models/employee';
+import { db } from "../firebase/firebase";
+import { Employee } from "../models/employee";
 
 class EmployeeService {
-
   constructor() {
-    this.collection = 'employees';
+    this.collection = "employees";
   }
 
   async createEmployee(employee) {
     const collectionRef = collection(db, this.collection);
-    console.log("got colloection")
+    //console.log("got colloection")
     const d = new Date();
     let time = d.getTime();
-    console.log(time);
-    const docRef = await addDoc(collectionRef, 
-      {
-        id: time,
-        photo: employee.photo,
-        name: employee.name,
-        country: employee.country,
-        role: employee.role,
-        email: employee.email,
-        phone: employee.phone,
-        status: employee.status
-      }
-    );
+    //console.log(time);
+    const docRef = await addDoc(collectionRef, {
+      id: time,
+      photo: employee.photo,
+      name: employee.name,
+      country: employee.country,
+      role: employee.role,
+      email: employee.email,
+      phone: employee.phone,
+      status: employee.status,
+    });
 
-
-
-
-
-
-      // employee.toJson()); 
-    console.log("adding doc");
+    // employee.toJson());
+    //console.log("adding doc");
 
     // employee.id = docRef.id;
     // await updateDoc(docRef, employee.toJson());
-    console.log("updatedDoc");
+    //console.log("updatedDoc");
 
     return employee;
   }
@@ -86,7 +81,7 @@ class EmployeeService {
       role: employee.role,
       email: employee.email,
       phone: employee.phone,
-      status: employee.status
+      status: employee.status,
     });
 
     return employee;
@@ -97,11 +92,8 @@ class EmployeeService {
 
     await deleteDoc(docRef);
   }
-} 
+}
 
 const service = new EmployeeService();
 
 export default service;
-
-
-
