@@ -42,6 +42,7 @@ export default function AdminList() {
 
   function hideModal() {
     setShowModal(false);
+    setAdminToUpdate(null);
   }
 
   return (
@@ -83,7 +84,7 @@ export default function AdminList() {
         </tbody>
       </table>
 
-      <Modal show={showModal}>
+      <Modal show={showModal} onHide={() => hideModal()}>
         <Modal.Header closeButton>
           <Modal.Title>Update admin</Modal.Title>
         </Modal.Header>
@@ -92,7 +93,7 @@ export default function AdminList() {
           privileges?
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-secondary" onClick={() => hideModal}>
+          <button className="btn btn-secondary" onClick={() => hideModal()}>
             Close
           </button>
           <button

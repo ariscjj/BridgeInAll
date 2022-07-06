@@ -52,7 +52,7 @@ class ProfileService {
     if (role === Role.employee) {
       return "/employeehome";
     } else if (role === Role.company) {
-      return "/companyhome";
+      return "/subsidiarylist";
     } else if (role === Role.admin && !approved) {
       return "/adminpending";
     } else if (role === Role.admin && approved) {

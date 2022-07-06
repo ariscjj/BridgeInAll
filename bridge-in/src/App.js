@@ -23,7 +23,6 @@ import ProfileService from "./components/auth/profile.service";
 
 import Spinner from "./components/common/Spinner";
 import RequireAuth from "./components/common/RequireAuth";
-import PendingAdminPage from "./components/homepages/PendingAdminPage";
 
 function App() {
   const [subsidiaries, setSubsidiaries] = useState([]);
@@ -67,7 +66,7 @@ function App() {
                 path="/"
                 element={
                   <RequireAuth user={user}>
-                    <HomePage />
+                    <HomePage user={user} />
                   </RequireAuth>
                 }
               />
@@ -85,7 +84,6 @@ function App() {
               <Route path="/employeelist" element={<EmployeeTable />} />
               <Route path="/addemployee" element={<EmployeeInput />} />
               <Route path="/subsidiarylist" element={<SubsidiaryListPage />} />
-              {/* <Route path="/adminpending" element={<PendingAdminPage />} /> */}
               <Route
                 path="/approveadmin"
                 element={<AdminList profiles={profiles} />}

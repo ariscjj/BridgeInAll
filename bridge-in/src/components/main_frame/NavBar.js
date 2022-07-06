@@ -105,39 +105,45 @@ function NavBar(props) {
                 )}
                 {profile.role === Role.admin ? (
                   <>
-                    <li className="nav-item">
-                      <NavLink
-                        exact="true"
-                        to="/addemployee"
-                        //activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                      >
-                        Add Employee
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink
-                        exact="true"
-                        to="/subsidiarylist"
-                        //activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                      >
-                        Subsidiary List
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink
-                        exact="true"
-                        to="/addsubsidiary"
-                        //activeClassName="active"
-                        className="nav-links"
-                        onClick={handleClick}
-                      >
-                        Add Subsidiary
-                      </NavLink>
-                    </li>
+                    {profile.approved ? (
+                      <>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
+                            to="/addemployee"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Add Employee
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
+                            to="/subsidiarylist"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Subsidiary List
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
+                            to="/addsubsidiary"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Add Subsidiary
+                          </NavLink>
+                        </li>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 ) : (
                   <></>

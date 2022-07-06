@@ -12,7 +12,6 @@ export default function RegisterPage(props) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [role, setRole] = useState(Role.employee);
-  const [url, setUrl] = useState("");
 
   async function onFormSubmit(e) {
     e.preventDefault();
