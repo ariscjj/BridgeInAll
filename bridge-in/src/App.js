@@ -116,7 +116,53 @@ function App() {
           </div>
         )}
       </BrowserRouter>
+      <NavBar>
+        <NavItem icon={<CaretIcon />}>
+          <DropdownMenu></DropdownMenu>
+        </NavItem>
+      </NavBar>
     </>
+  );
+}
+
+function DropdownMenu() {
+  const [activeMenu, setActiveMenu] = useState("main");
+  function DropdownItem(props) {
+    return (
+      <a href="#" className="menu-item">
+        <span className="menu-button">{props.leftIcon}</span>
+        {props.children}
+        <span className="icon-right">{props.rightIcon}</span>
+      </a>
+    );
+  }
+  return (
+    <div className="dropdown">
+      <CSSTransition
+        in={activeMenu === "Subsidiaries"}
+        unmountOnExit
+        timeout={500}
+        classNames="menu-secondary"
+      >
+        <div className="menu">
+          <DropdownItem>Countries</DropdownItem>
+          <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+            Subsidiaries Add Subsidiary
+          </DropdownItem>
+        </div>
+      </CSSTransition>
+    </div>
+  );
+}
+
+function NavItem(props) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li className="nav-menu">
+      <a href="#" className="nav-item" onClick={() => setOpen(!open)}></a>
+      {open && props.children}
+    </li>
   );
 }
 
