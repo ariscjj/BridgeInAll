@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
+import ProfileService from "./profile.service";
 import { auth } from "../firebase/firebase";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [url, setUrl] = useState("");
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -15,7 +16,10 @@ export default function LoginPage() {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
 
-      console.log(userCred);
+      //console.log(userCred);
+      // const prof = ProfileService.fetchProfile(userCred.user);
+      // setUrl(ProfileService.homeUrl(prof.role, prof.approved));
+      // console.log(url);
       navigate("/");
     } catch (err) {
       alert(err.message);

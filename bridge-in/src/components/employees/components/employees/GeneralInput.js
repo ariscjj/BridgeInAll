@@ -17,7 +17,7 @@ export default function EmployeeInput(props){
     e.preventDefault();
     try{
       const downloadUrl = await FileService.uploadImage(file, (progress) => {
-      console.log(progress);
+      //console.log(progress);
     }); 
 
     props.onEmployeeCreate(photo, name, country, role, email, phone, status);

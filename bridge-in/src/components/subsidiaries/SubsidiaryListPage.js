@@ -18,12 +18,7 @@ export default function SubsidiaryListPage() {
     setSubsidiaries(subsidiaries);
   }
 
-  async function onInitialLoad() {
-    const subsidiaries = await SubsidiaryService.fetchSubsidiary();
-    setSubsidiaries(subsidiaries);
-  }
-
-  console.log(subsidiaries);
+  //console.log(subsidiaries);
 
   return (
     <div className="container mt-5">

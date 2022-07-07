@@ -1,0 +1,20 @@
+.app-pdf-input {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  
+   
+  }
+
+  .app-pdf-input .pdf-holder {
+    width: 100%;
+    
+  }
+
+  .app-pdf-input .pdf-holder  .pdf {
+    width: 100%;
+  }
+
+  .app-pdf-input input {
+    display: none;
+  }
+  
