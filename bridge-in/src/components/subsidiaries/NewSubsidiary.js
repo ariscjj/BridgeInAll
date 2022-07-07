@@ -49,9 +49,9 @@ export default function NewSubsidiary(props) {
           <input
             value={employeeNum}
             onChange={(e) => setEmployeeNum(e.target.value)}
-            type="text"
+            type="number"
             className="form-control  mb-3"
-            placeholder="EmployeeNum"
+            placeholder="Employee Number"
           />
           <h4 className="mt-2">Address</h4>
           <input

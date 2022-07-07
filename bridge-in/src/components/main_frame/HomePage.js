@@ -30,7 +30,7 @@ export default function HomePage(props) {
       {props.user && profile ? (
         <>
           {profile.role === Role.employee ? (
-            <>{navigate("/employeehome")}</>
+            <>{navigate("/addemployee")}</>
           ) : (
             <></>
           )}

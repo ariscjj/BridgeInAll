@@ -130,9 +130,9 @@ export default function EditSubsidiary() {
           <input
             value={employeeNum}
             onChange={(e) => setEmployeeNum(e.target.value)}
-            type="text"
+            type="number"
             className="form-control  mb-3"
-            placeholder="EmployeeNum"
+            placeholder="Employee Number"
           />
           <input
             value={address}

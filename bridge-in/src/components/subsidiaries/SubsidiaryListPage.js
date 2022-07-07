@@ -47,9 +47,12 @@ export default function SubsidiaryListPage() {
               <td>
                 <div
                   className={
-                    "d-inline-flex justify-content-center rounded text-center container bg-" +
+                    "d-inline-flex justify-content-center rounded text-center text-white container bg-" +
                     sub.color
                   }
+                  style={{
+                    width: "50%",
+                  }}
                 >
                   {sub.status}
                 </div>

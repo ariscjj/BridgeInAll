@@ -62,9 +62,23 @@ export default function AdminList() {
               <td>{admin.name + " " + admin.surname}</td>
               <td>
                 {admin.approved ? (
-                  <div className="container success text-center">Approved</div>
+                  <div
+                    className="container text-bg-success rounded text-center"
+                    style={{
+                      width: "30%",
+                    }}
+                  >
+                    Approved
+                  </div>
                 ) : (
-                  <div className="container danger text-center">Pending</div>
+                  <div
+                    className="container text-bg-danger rounded text-center"
+                    style={{
+                      width: "30%",
+                    }}
+                  >
+                    Pending
+                  </div>
                 )}
               </td>
               <td>

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
 import EmployeeTable from "./components/employees/components/EmployeeTable";
-import EmployeeInput from "./components/employees/components/EmployeeInput";
+import EmployeeInput from "./components/employees/new-code-2/components/employees/EmployeeInput";
 import SubsidiaryListPage from "./components/subsidiaries/SubsidiaryListPage";
 import NewSubsidiary from "./components/subsidiaries/NewSubsidiary";
 import HomePage from "./components/main_frame/HomePage";
@@ -14,6 +14,8 @@ import SubsidiaryPage from "./components/subsidiaries/SubsidiaryPage";
 import EditSubsidiary from "./components/subsidiaries/EditSubsidiary";
 import AdminRegisterPage from "./components/auth/AdminRegisterPage";
 import AdminList from "./components/admin_edit/AdminList";
+import EditEmployeeInput from "./components/employees/new-code-2/components/employees/EditInput";
+import EditTable from "./components/employees/new-code-2/components/employees/EditTable";
 
 import { Subsidiary } from "./components/subsidiaries/Subsidiary";
 import SubsidiaryService from "./components/subsidiaries/subsidiary.service";
@@ -83,6 +85,8 @@ function App() {
               />
               <Route path="/employeelist" element={<EmployeeTable />} />
               <Route path="/addemployee" element={<EmployeeInput />} />
+              <Route path="/editemployee" element={<EditEmployeeInput />} />
+              <Route path="/employeeapprovaltable" element={<EditTable />} />
               <Route path="/subsidiarylist" element={<SubsidiaryListPage />} />
               <Route
                 path="/approveadmin"

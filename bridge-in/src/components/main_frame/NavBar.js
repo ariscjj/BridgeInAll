@@ -110,12 +110,45 @@ function NavBar(props) {
                         <li className="nav-item">
                           <NavLink
                             exact="true"
+                            to="/employeelist"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Employee List
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
                             to="/addemployee"
                             //activeClassName="active"
                             className="nav-links"
                             onClick={handleClick}
                           >
-                            Add Employee
+                            Onboard Employee
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
+                            to="/editemployee"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Edit Employee Info
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            exact="true"
+                            to="/employeeapprovaltable"
+                            //activeClassName="active"
+                            className="nav-links"
+                            onClick={handleClick}
+                          >
+                            Employee Pending Approval
                           </NavLink>
                         </li>
                         <li className="nav-item">
@@ -153,12 +186,45 @@ function NavBar(props) {
                     <li className="nav-item">
                       <NavLink
                         exact="true"
+                        to="/employeelist"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Employee List
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact="true"
                         to="/addemployee"
                         //activeClassName="active"
                         className="nav-links"
                         onClick={handleClick}
                       >
-                        Add Employee
+                        Onboard Employee
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact="true"
+                        to="/editemployee"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Edit Employee Info
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        exact="true"
+                        to="/employeeapprovaltable"
+                        //activeClassName="active"
+                        className="nav-links"
+                        onClick={handleClick}
+                      >
+                        Employee Pending Approval
                       </NavLink>
                     </li>
                     <li className="nav-item">
@@ -200,7 +266,10 @@ function NavBar(props) {
                 <li className="nav-item">
                   <button
                     className="btn"
-                    style={{ borderColor: "white", color: "white" }}
+                    style={{
+                      borderColor: "white",
+                      color: "white",
+                    }}
                     onClick={onLogoutClicked}
                   >
                     Logout
